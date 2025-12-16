@@ -719,12 +719,52 @@ Ask for specific DAX patterns:
 - "Show me how to use CALCULATE with filters"
 - "Generate a measure for average order value"
 
-#### PBIP Operations
+#### PBIP Operations (Chat)
 
 Include the PBIP path in your request:
 
 - "Rename table Sales to Fact Sales in C:\Projects\MyReport"
 - "Rename column CustomerID to Customer ID in Dim Customer at C:\Projects\MyReport"
+
+#### Interactive PBIP Rename Tools
+
+The webapp includes a **dedicated visual interface** for PBIP editing - no coding required:
+
+1. Click **"✏️ PBIP Rename Tools"** button in the sidebar
+2. Enter your PBIP project path
+3. Choose rename type: **Tables**, **Columns**, or **Measures**
+4. Select the item to rename from dropdown (auto-populated from your model)
+5. Enter the new name
+6. Click **"Rename"** - all references updated automatically
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  PBIP RENAME TOOLS                                          │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Project Path: [ C:\Projects\SalesReport           ] [Load] │
+│                                                             │
+│  Rename Type:  ○ Tables  ○ Columns  ○ Measures              │
+│                                                             │
+│  Select Item:  [ Dim Customer          ▼ ]                  │
+│                                                             │
+│  New Name:     [ Dimension - Customer     ]                 │
+│                                                             │
+│  [ Rename ]                                                 │
+│                                                             │
+│  ✅ Renamed 'Dim Customer' → 'Dimension - Customer'         │
+│  📁 Modified 8 files                                        │
+│  🔗 Updated 34 references                                   │
+│  💾 Backup: SalesReport_backup_20241216_143052              │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key Benefits:**
+- **No Breaking Changes**: All references (TMDL, DAX, visuals) updated atomically
+- **Auto-Backup**: Creates backup before any modification
+- **Visual Feedback**: See exactly what files and references were updated
+- **Safe Quoting**: Handles TMDL quoting rules automatically (`'Table Name'`)
+- **PBIR Enhanced Support**: Works with new individual visual.json format
 
 ### Advanced Features
 
@@ -1009,13 +1049,22 @@ powerbi-expert-app/
 ### Security
 
 **Q: Does my data get sent to external servers?**
-> Only schema metadata (table/column names) is sent to the AI. Actual row data never leaves your environment until you execute a query.
+> **No. Your data never leaves your secure environment.** This webapp is specifically designed to work with:
+> - **Azure AI Foundry** (Azure Claude or Azure OpenAI) - Data stays within YOUR Azure subscription
+> - **Ollama** (Local) - Data never leaves your machine
+>
+> Unlike tools that use public LLM APIs (OpenAI, Anthropic), Power BI Expert Webapp connects exclusively to enterprise-grade, private deployments. Microsoft and Anthropic do NOT use your data to train their models when using Azure AI services. Your data is processed securely within the Azure ecosystem under your organization's data governance policies.
 
 **Q: Is this compliant with GDPR/HIPAA?**
-> When using Ollama (local) or Azure providers (your subscription), data stays within your infrastructure. Enable audit logging for compliance documentation.
+> Yes! When using Azure AI Foundry or Ollama:
+> - Data stays within your infrastructure (Azure subscription or local machine)
+> - No data is used for model training
+> - Full audit logging with tamper-evident signatures
+> - Air-gap deployment option for maximum isolation
+> - Compliant with SOC 2, ISO 27001, HIPAA, GDPR (via Azure)
 
 **Q: Can I audit what's being sent to the AI?**
-> Yes. Enable the audit logger to capture all requests with cryptographic signatures.
+> Yes. Enable the audit logger to capture all requests with cryptographic HMAC signatures and hash chains for tamper detection.
 
 ### Technical
 
