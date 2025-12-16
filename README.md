@@ -24,6 +24,8 @@
 
 **Power BI Expert Webapp** is an AI-powered web application that transforms how organizations interact with Microsoft Power BI. It enables business analysts, data engineers, and BI developers to query data, generate DAX code, and manage semantic models using natural language - dramatically reducing the technical barrier to Power BI analytics.
 
+YT VIDEO: "https://youtu.be/5gNa9BUJ4r8"
+
 ### Business Value
 
 | Metric | Impact |
