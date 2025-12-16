@@ -1,0 +1,104 @@
+# Power BI Expert Webapp - Git Ignore
+# ==================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+nul
+
+# Logs
+*.log
+logs/
+audit_logs/
+
+# Local configuration
+.env
+.env.local
+*.local
+config.local.yaml
+
+# PyInstaller
+*.manifest
+*.spec
+build/
+dist/
+
+# Test files (keep test framework, exclude output)
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# Archive/deprecated code
+Archive/
+
+# PDF documentation (regenerate from markdown)
+*.pdf
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Credentials (NEVER commit)
+credentials.json
+*.pem
+*.key
+secrets.yaml
+secrets.json
+
+# Power BI files (user data)
+*.pbix
+*.pbit
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+~$*
+
+# Build artifacts
+PowerBI_Expert.spec
+build_exe.bat

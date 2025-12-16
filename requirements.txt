@@ -1,0 +1,28 @@
+# Power BI MCP Server V3 Requirements
+# =====================================
+
+# MCP Protocol
+mcp>=1.0.0
+
+# HTTP Client (for Ollama)
+httpx>=0.25.0
+
+# Configuration
+pyyaml>=6.0
+
+# Process Management (for Power BI Desktop discovery)
+psutil>=5.9.0
+
+# .NET Interop (for Power BI Desktop connectivity)
+pythonnet>=3.0.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Optional: Azure integration (for azure_private mode)
+# azure-identity>=1.15.0
+# azure-ai-inference>=1.0.0
+
+# Development
+# pytest>=7.0.0
+# pytest-asyncio>=0.21.0
