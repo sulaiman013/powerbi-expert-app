@@ -630,20 +630,28 @@ PowerBI_Expert.bat
 The `requirements.txt` includes:
 
 ```
-# Core
+# Web Framework
 flask>=2.0.0
-httpx>=0.25.0
-pyyaml>=6.0
-python-dotenv>=1.0.0
 
-# Power BI Connectivity
-pythonnet>=3.0.0
+# HTTP Client (for Azure AI and Ollama)
+httpx>=0.25.0
+
+# Configuration
+pyyaml>=6.0
+
+# Process Management (for Power BI Desktop discovery)
 psutil>=5.9.0
 
-# Azure Authentication
+# .NET Interop (for Power BI Desktop connectivity via ADOMD.NET)
+pythonnet>=3.0.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Azure Authentication (for Power BI Service and Azure AI)
 msal>=1.20.0
 
-# XMLA Connectivity
+# XMLA Connectivity (for Power BI Service Premium/PPU)
 pyadomd>=0.1.0
 ```
 

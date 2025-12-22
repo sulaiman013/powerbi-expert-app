@@ -1,10 +1,10 @@
-# Power BI MCP Server V3 Requirements
+# Power BI Expert Webapp Requirements
 # =====================================
 
-# MCP Protocol
-mcp>=1.0.0
+# Web Framework
+flask>=2.0.0
 
-# HTTP Client (for Ollama)
+# HTTP Client (for Azure AI and Ollama)
 httpx>=0.25.0
 
 # Configuration
@@ -13,16 +13,20 @@ pyyaml>=6.0
 # Process Management (for Power BI Desktop discovery)
 psutil>=5.9.0
 
-# .NET Interop (for Power BI Desktop connectivity)
+# .NET Interop (for Power BI Desktop connectivity via ADOMD.NET)
 pythonnet>=3.0.0
 
 # Environment variables
 python-dotenv>=1.0.0
 
-# Optional: Azure integration (for azure_private mode)
-# azure-identity>=1.15.0
-# azure-ai-inference>=1.0.0
+# Azure Authentication (for Power BI Service and Azure AI)
+msal>=1.20.0
 
-# Development
+# XMLA Connectivity (for Power BI Service Premium/PPU)
+pyadomd>=0.1.0
+
+# Development (optional)
 # pytest>=7.0.0
 # pytest-asyncio>=0.21.0
+# black
+# flake8
