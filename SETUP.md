@@ -1,6 +1,6 @@
-# Power BI MCP Server V3 - Complete Setup Guide
+# Power BI Expert Webapp - Complete Setup Guide
 
-This guide walks you through setting up Power BI MCP Server V3 from scratch. Follow the steps in order for a smooth installation.
+This guide walks you through setting up Power BI Expert Webapp from scratch. Follow the steps in order for a smooth installation.
 
 ---
 
@@ -69,10 +69,10 @@ Open PowerShell or Command Prompt and run:
 cd C:\Projects  # or wherever you want to install
 
 # Clone the repository
-git clone https://github.com/sulaiman013/powerbi-mcp.git
+git clone https://github.com/sulaiman013/powerbi-expert-app.git
 
-# Navigate to V3 folder
-cd powerbi-mcp\powerbi-mcp-v3
+# Navigate to the folder
+cd powerbi-expert-app
 ```
 
 ### Step 2.2: Create Virtual Environment (Recommended)
@@ -111,11 +111,14 @@ This installs:
 ### Step 2.4: Verify Installation
 
 ```powershell
-# Run the test suite
-python test_comprehensive.py
+# Verify imports work correctly
+python -c "from src.web.app import create_app; print('Installation successful!')"
+
+# Or simply launch the webapp
+python web_ui.py
 ```
 
-Don't worry if some tests fail at this point - they require LLM and Power BI configuration.
+The browser should open automatically to http://localhost:5050
 
 ---
 
@@ -470,8 +473,8 @@ Client Secret: your-client-secret
 ### Step 5.1: Start the Web UI
 
 ```powershell
-# Make sure you're in the powerbi-mcp-v3 folder
-cd C:\Projects\powerbi-mcp\powerbi-mcp-v3
+# Make sure you're in the powerbi-expert-app folder
+cd C:\Projects\powerbi-expert-app
 
 # Activate virtual environment (if using)
 .\venv\Scripts\Activate.ps1
@@ -484,7 +487,7 @@ You should see:
 
 ```
 ============================================================
-  Power BI MCP Server V3 - AI-Powered Assistant
+  Power BI Expert Webapp - AI-Powered Assistant
 ============================================================
 
   Web UI: http://localhost:5050
@@ -581,40 +584,17 @@ app.run(host='127.0.0.1', port=8080, debug=False, threaded=True)
 
 ## 7. Verification & Testing
 
-### Run Comprehensive Tests
+### Quick Verification
 
 ```powershell
-python test_comprehensive.py
+# Verify installation - should print "Installation successful!"
+python -c "from src.web.app import create_app; print('Installation successful!')"
+
+# Launch the webapp
+python web_ui.py
 ```
 
-Expected output:
-
-```
-============================================================
-  POWER BI MCP SERVER V3 - COMPREHENSIVE TEST SUITE
-============================================================
-
-TEST 1: Azure Claude Provider
-  [OK] Provider initialization: PASS
-  [OK] Health check: PASS
-  [OK] Text generation: PASS
-
-TEST 2: Power BI Desktop Discovery
-  [OK] Desktop connector available: PASS
-  [OK] Discover instances (2 found): PASS
-
-TEST 3: Power BI Desktop Connection
-  [OK] Connect to Salesforce BI.pbix: PASS
-  [OK] List tables (15 found): PASS
-  [OK] Execute DAX query: PASS
-
-... (more tests)
-
-============================================================
-  Total: 6/6 tests passed
-  STATUS: ALL TESTS PASSED!
-============================================================
-```
+The browser should open automatically to http://localhost:5050
 
 ### Manual Verification Checklist
 
@@ -704,7 +684,7 @@ TEST 3: Power BI Desktop Connection
 ## Need More Help?
 
 - Check the [README.md](README.md) for FAQ and troubleshooting
-- Open an issue on [GitHub](https://github.com/sulaiman013/powerbi-mcp/issues)
+- Open an issue on [GitHub](https://github.com/sulaiman013/powerbi-expert-app/issues)
 - Enable debug mode in `web_ui.py` for detailed error messages
 
 ---
