@@ -21,20 +21,45 @@ except ImportError:
 
 # Find and load ADOMD.NET
 def _find_adomd_dll() -> Optional[Path]:
-    """Find ADOMD.NET DLL from Power BI Desktop or SQL Server installations"""
+    """Find ADOMD.NET DLL from Power BI Desktop, SSMS, or SQL Server installations"""
     possible_paths = [
         # Power BI Desktop installation (preferred for Desktop connectivity)
         Path(r"C:\Program Files\Microsoft Power BI Desktop\bin"),
         Path(os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\Power BI Desktop\bin")),
         # Windows Store version
         Path(os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\WindowsApps")),
-        # SQL Server installations
+        # SSMS 22 (common installation location)
+        Path(r"C:\Program Files\Microsoft SQL Server Management Studio 22\Release\Common7\IDE"),
+        # SSMS 21
+        Path(r"C:\Program Files\Microsoft SQL Server Management Studio 21\Release\Common7\IDE"),
+        # SSMS 20
+        Path(r"C:\Program Files\Microsoft SQL Server Management Studio 20\Release\Common7\IDE"),
+        # ADOMD.NET standalone installation
+        Path(r"C:\Program Files\Microsoft.NET\ADOMD.NET\160"),
+        Path(r"C:\Program Files\Microsoft.NET\ADOMD.NET\150"),
+        Path(r"C:\Program Files\Microsoft.NET\ADOMD.NET\140"),
+        # SQL Server SDK installations
         Path(r"C:\Program Files\Microsoft SQL Server\160\SDK\Assemblies"),
         Path(r"C:\Program Files\Microsoft SQL Server\150\SDK\Assemblies"),
         Path(r"C:\Program Files (x86)\Microsoft SQL Server\160\SDK\Assemblies"),
         # SQL Server Update Cache
         Path(r"C:\Program Files\Microsoft SQL Server\160\Setup Bootstrap\Update Cache"),
     ]
+
+    # Check for version-agnostic SSMS installations
+    ssms_base = Path(r"C:\Program Files")
+    if ssms_base.exists():
+        for ssms_dir in ssms_base.glob("Microsoft SQL Server Management Studio *"):
+            ide_path = ssms_dir / "Release" / "Common7" / "IDE"
+            if ide_path.exists():
+                possible_paths.insert(0, ide_path)
+
+    # Check for version-agnostic ADOMD.NET installations
+    adomd_base = Path(r"C:\Program Files\Microsoft.NET\ADOMD.NET")
+    if adomd_base.exists():
+        for adomd_dir in sorted(adomd_base.iterdir(), reverse=True):
+            if adomd_dir.is_dir():
+                possible_paths.insert(0, adomd_dir)
 
     # Check Update Cache for latest version
     update_cache = Path(r"C:\Program Files\Microsoft SQL Server\160\Setup Bootstrap\Update Cache")
